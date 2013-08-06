@@ -168,6 +168,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redis (3.0.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.13.0)
@@ -243,6 +244,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 3.2.13)
   rake
+  redis
   rspec-rails
   sass-rails (~> 3.2.3)
   simple_form
