@@ -44,7 +44,7 @@ describe 'user rates product' do
     it 'they can edit a rating left within the last 15 minutes' do
       product = FactoryGirl.create(:product, title: 'Princess')
       rating = FactoryGirl.create(:rating, user_id: @user.id, product_id: product.id)
-      visit edit_product_rating_path(product, rating)
+      visit edit_product_rating_path(product, @user.id)
       expect(page).to have_content('Edit your rating of')
       fill_in 'Title', with: 'CHANGED MY MIND!'
       click_button 'Submit'
@@ -63,7 +63,7 @@ describe 'user rates product' do
     it 'their edit fails with missing information' do
       product = FactoryGirl.create(:product, title: 'Princess')
       rating = FactoryGirl.create(:rating, user_id: @user.id, product_id: product.id)
-      visit edit_product_rating_path(product, rating)
+      visit edit_product_rating_path(product, @user.id)
       expect(page).to have_content('Edit your rating of')
       fill_in 'Title', with: ''
       click_button 'Submit'

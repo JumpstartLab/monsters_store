@@ -14,7 +14,7 @@
     </td>
     <td>
       <% if product.rating_editable? %>
-        <%= button_to t('crud.edit'), edit_product_rating_path(product.id, product.rating_id), method: :get, class: "btn btn-mini inactive" %>
+        <%= button_to t('crud.edit'), edit_product_rating_path(product.id, product.user_id), method: :get, class: "btn btn-mini inactive" %>
       <% end %>
     </td>
   <% else %>

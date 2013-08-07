@@ -25,12 +25,12 @@ class RatingsController < ApplicationController
   end
 
   def edit
-    @rating = Rating.find(params[:id])
+    @rating = Rating.find_unique(params)
     @product = Product.find(@rating.product_id)
   end
 
   def update
-    @rating = Rating.find(params[:id])
+    @rating = Rating.find_unique(params)
     @product = Product.find(@rating.product_id)
     if @rating.update_attributes(params[:rating])
       redirect_to account_ratings_path,

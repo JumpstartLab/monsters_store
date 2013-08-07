@@ -16,8 +16,11 @@ StoreEngine::Application.routes.draw do
 
   resources :sessions, only: [ :new, :create, :destroy ]
   resources :products, only: [ :index, :show ] do
-    resources :ratings, except: [ :index, :show, :destroy ]
+    resources :ratings, only: [ :new, :create ]
   end
+
+  get "/products/:product_id/ratings/:user_id" => "ratings#edit", as: :edit_product_rating
+  put "/products/:product_id/ratings/:user_id" => "ratings#update", as: :product_rating
 
   resource :cart, only: [ :update, :show, :destroy ] do
     member do

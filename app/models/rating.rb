@@ -14,4 +14,9 @@ class Rating < ActiveRecord::Base
   def editable?
     created_at > Time.now.utc - 900
   end
+
+  def self.find_unique(params)
+    result = find_by_user_id_and_product_id(params[:user_id], params[:product_id])
+    result || raise(ActiveRecord::RecordNotFound)
+  end
 end
