@@ -4,9 +4,9 @@
   </td>
   <% if product.rated? %>
     <td>
-      <div id="star-rating<%= product.rating_id %>"></div>
+      <div id="star-rating-<%= product.id %>"></div>
       <script>
-        $('#star-rating<%= product.rating_id %>').raty({ readOnly: true, score: <%= product.stars %> });
+        $('#star-rating-<%= product.id %>').raty({ readOnly: true, score: <%= product.stars %> });
       </script>
     </td>
     <td>

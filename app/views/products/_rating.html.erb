@@ -1,6 +1,6 @@
 <div class='rating'>
   <div class="rating-title">
-    <div id="star-rating<%=rating.id%>">
+    <div id="star-rating-<%=rating.user_id%>">
       <b><%= rating.title %> </b>
     </div>
   </div>
@@ -9,5 +9,5 @@
 </div>
 
 <script>
-  $('#star-rating<%=rating.id%>').raty({ readOnly: true, score: <%= rating.stars %> });
+  $('#star-rating-<%=rating.user_id%>').raty({ readOnly: true, score: <%= rating.stars %> });
 </script>
