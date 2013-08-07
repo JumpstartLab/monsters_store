@@ -26,6 +26,12 @@ describe 'user rates product' do
       expect(page).to have_content('Love it')
     end
 
+    it 'has a rating link from the product page' do
+      product = Product.find_by_title "Itchy Sweater"
+      visit product_path(product)
+      expect(page).to have_button("Rate it!")
+    end
+
     it 'their rating fails with incorrect params' do
       visit account_ratings_path
       click_link 'Rate this product'
@@ -45,6 +51,15 @@ describe 'user rates product' do
       expect(current_path).to eq account_ratings_path
     end
 
+    it 'they cannot edit a rating after 16 minutes' do
+      product = Product.find_by_title "Itchy Sweater"
+      FactoryGirl.create(:rating, user_id: @user.id, product_id: product.id)
+      Timecop.travel(Time.now.utc + 16.minutes)
+      visit product_path(product)
+      expect(page).to_not have_button('Edit your rating')
+      Timecop.return
+    end
+
     it 'their edit fails with missing information' do
       product = FactoryGirl.create(:product, title: 'Princess')
       rating = FactoryGirl.create(:rating, user_id: @user.id, product_id: product.id)
@@ -53,6 +68,13 @@ describe 'user rates product' do
       fill_in 'Title', with: ''
       click_button 'Submit'
       expect(page).to have_content("can't be blank")
+    end
+
+    it 'shows the correct rating on the product page' do
+      product = FactoryGirl.create(:product, title: 'Princess')
+      rating = FactoryGirl.create(:rating, user_id: @user.id, product_id: product.id)
+      visit product_path(product)
+      expect(page).to have_content(rating.title)
     end
   end
 end
