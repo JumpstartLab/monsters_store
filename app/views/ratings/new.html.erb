@@ -1,5 +1,7 @@
 <div class="rating-new">
   <h1><%= t('ratings.newpage') %> '<%= @product.title %>'</h1>
 
-  <%= render 'form' %>
+  <%= simple_form_for [@product, @rating] do |f| %>
+    <%= render 'form', :f => f %>
+  <% end %>
 </div>

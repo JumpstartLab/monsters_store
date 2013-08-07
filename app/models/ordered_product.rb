@@ -24,11 +24,10 @@ class OrderedProduct
     !!rating
   end
 
-  def_delegator :rating, :id, :rating_id
   def_delegator :rating, :created_at, :rated_at
   def_delegator :rating, :editable?, :rating_editable?
   def_delegators :product, :title, :id
-  def_delegators :rating, :stars
+  def_delegators :rating, :stars, :user_id
 
   private
   attr_reader :product, :rating
