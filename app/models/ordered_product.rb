@@ -3,7 +3,7 @@ class OrderedProduct
     products = Order.by(user).map do |order|
       order.products
     end.flatten.uniq
-    ratings = Rating.where(user_id: user.id).
+    ratings = RatingsRepository.ratings_by(user.id).
       inject({}) do |memo, rating|
       memo[rating.product_id] = rating
       memo

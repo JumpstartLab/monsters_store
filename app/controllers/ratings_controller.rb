@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
   end
 
   def new
-    @rating = Rating.new(product_id: params[:product_id])
+    @rating = RatingsRepository.new_rating(:product_id => params[:product_id])
     @product = Product.find(@rating.product_id)
   end
 
@@ -14,7 +14,7 @@ class RatingsController < ApplicationController
     params[:rating].merge!(product_id: params[:product_id],
                            user_id: current_user.id
                            )
-    @rating = Rating.new(params[:rating])
+    @rating = RatingsRepository.new_rating(params[:rating])
     @product = Product.find(@rating.product_id)
     if @rating.save
       redirect_to product_path(@product),
@@ -25,12 +25,12 @@ class RatingsController < ApplicationController
   end
 
   def edit
-    @rating = Rating.find_unique(params)
+    @rating = RatingsRepository.find_unique(params)
     @product = Product.find(@rating.product_id)
   end
 
   def update
-    @rating = Rating.find_unique(params)
+    @rating = RatingsRepository.find_unique(params)
     @product = Product.find(@rating.product_id)
     if @rating.update_attributes(params[:rating])
       redirect_to account_ratings_path,

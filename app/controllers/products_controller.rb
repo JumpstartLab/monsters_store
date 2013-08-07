@@ -7,6 +7,6 @@ class ProductsController < ApplicationController
   def show
     session[:return_to] = request.fullpath
     @product = Product.find(params[:id])
-    @ratings = Rating.where(product_id: params[:id])
+    @ratings = RatingsRepository.ratings_for(params[:id])
   end
 end
