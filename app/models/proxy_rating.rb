@@ -6,15 +6,11 @@ module HacksForActionView
   def persisted?
     !!created_at
   end
-
-  def editable?
-    true
-  end
 end
 
 class ProxyRating
   def self.defined_attributes
-    [:product_id, :user_id, :title, :body, :stars]
+    [:product_id, :user_id, :title, :body, :stars, :created_at]
   end
   
   attr_accessor *defined_attributes
@@ -27,7 +23,7 @@ class ProxyRating
     ProxyRating.defined_attributes.each do |attr|
       send "#{attr}=", (attributes[attr.to_s] || attributes[attr])
     end
-    self.rated_at = attributes[:created_at]
+    self.rated_at = self.created_at = Time.parse(attributes["created_at"])
   end
 
   def save
@@ -42,6 +38,10 @@ class ProxyRating
 
   def user
     User.find(user_id)
+  end
+
+  def editable?
+    rated_at < 15.minutes.ago
   end
 
   include HacksForActionView

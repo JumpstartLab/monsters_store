@@ -10,7 +10,7 @@
       </script>
     </td>
     <td>
-      <%= product.rated_at.to_s(:short) %>
+      <%= product.rated_at.strftime("%A") %>
     </td>
     <td>
       <% if product.rating_editable? %>
