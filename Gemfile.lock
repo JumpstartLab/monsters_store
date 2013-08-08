@@ -237,6 +237,7 @@ DEPENDENCIES
   debugger
   factory_girl_rails
   faker
+  faraday
   guard-rspec
   jquery-rails
   launchy
