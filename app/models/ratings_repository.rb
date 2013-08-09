@@ -3,9 +3,16 @@ class RatingsRepository
     name
   end
 
-  def self.get(path, adapter = Faraday)
+  def self.connection(adapter = Faraday)
     @connection ||= adapter
-    @connection.get("http://localhost:9292/#{path}").body
+  end
+
+  def self.get(path)
+    connection.get("http://localhost:9292/#{path}").body
+  end
+
+  def self.post(path, params)
+    connection.post("http://localhost:9292/#{path}", params).body
   end
 
   def self.get_json(path)
@@ -37,6 +44,7 @@ class RatingsRepository
   end
 
   def self.create(attrs)
-    Rating.create(attrs)
+    params = {"rating" => attrs}.to_json
+    post "/products/#{attrs[:product_id]}/ratings", params
   end
 end

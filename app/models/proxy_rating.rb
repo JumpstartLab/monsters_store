@@ -23,7 +23,10 @@ class ProxyRating
     ProxyRating.defined_attributes.each do |attr|
       send "#{attr}=", (attributes[attr.to_s] || attributes[attr])
     end
-    self.rated_at = self.created_at = Time.parse(attributes["created_at"])
+
+    if self.created_at
+      self.rated_at = self.created_at = Time.parse(attributes["created_at"])
+    end
   end
 
   def save
