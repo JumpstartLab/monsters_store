@@ -1,0 +1,111 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/users/1/ratings
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      user-agent:
+      - Faraday v0.8.7
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - text/html;charset=utf-8
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      connection:
+      - close
+      content-length:
+      - '14'
+    body:
+      encoding: US-ASCII
+      string: ! '{"ratings":[]}'
+    http_version: '1.1'
+  recorded_at: Fri, 09 Aug 2013 20:56:04 GMT
+- request:
+    method: post
+    uri: http://localhost:9292/products/1/ratings
+    body:
+      encoding: US-ASCII
+      string: ! '{"rating":{"product_id":"1","user_id":1,"title":"Love it","body":"Get
+        it get it get itttt","stars":"4","created_at":null}}'
+    headers:
+      user-agent:
+      - Faraday v0.8.7
+      content-type:
+      - application/x-www-form-urlencoded
+      accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      content-type:
+      - text/html;charset=utf-8
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      connection:
+      - close
+      content-length:
+      - '189'
+    body:
+      encoding: US-ASCII
+      string: ! '{"rating":{"body":"Get it get it get itttt","created_at":"2013-08-09T13:56:04-07:00","id":1,"product_id":1,"stars":4,"title":"Love
+        it","updated_at":"2013-08-09T13:56:04-07:00","user_id":1}}'
+    http_version: '1.1'
+  recorded_at: Fri, 09 Aug 2013 20:56:04 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/products/1/ratings
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      user-agent:
+      - Faraday v0.8.7
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - text/html;charset=utf-8
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      connection:
+      - close
+      content-length:
+      - '203'
+    body:
+      encoding: US-ASCII
+      string: ! '{"ratings":[{"rating":{"body":"Get it get it get itttt","created_at":"2013-08-09T13:56:04-07:00","id":1,"product_id":1,"stars":4,"title":"Love
+        it","updated_at":"2013-08-09T13:56:04-07:00","user_id":1}}]}'
+    http_version: '1.1'
+  recorded_at: Fri, 09 Aug 2013 20:56:04 GMT
+recorded_with: VCR 2.5.0

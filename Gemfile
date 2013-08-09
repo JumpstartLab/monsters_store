@@ -12,6 +12,7 @@ gem 'sorcery'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'will_paginate'
 gem 'faraday'
+gem 'ratings', :path => '../ratings/'
 
 gem 'redis'
 
@@ -37,6 +38,8 @@ group :development, :test do
   gem 'capybara'
   gem 'simplecov'
   gem 'quiet_assets'
+  gem 'vcr'
+  gem 'fakeweb'
 end
 
 group :test do

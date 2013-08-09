@@ -59,16 +59,6 @@ class InitialMigration < ActiveRecord::Migration
     add_index :users, :email, unique: true
     add_index :users, :remember_me_token
 
-    create_table :ratings do |t|
-      t.references :product
-      t.references :user
-      t.string :title
-      t.text :body
-      t.integer :stars, default: 0
-
-      t.timestamps
-    end
-
     create_table :sales do |t|
       t.integer :foreign_key
       t.integer :percent_off, default: 1

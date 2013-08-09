@@ -69,12 +69,6 @@ end
 
 statuses = %w(pending paid shipped cancelled returned)
 
-ratings = [
-  {title: 'Awesome!', body: "Gotta love this one. It's like Kirby but with better ears!", stars: 4 },
-  {title: 'Meh...', body: 'Just a Kirby knock-off.', stars: 2 },
-  {title: 'Cool', body: "I'm happy with my purchase", stars: 3 },
-  {title: 'Bought two!', body: 'Fantastic', stars: 5 }
-]
 User.all.each do |user|
   Product.all.sample(5).each_with_index do |product, i|
     order = Order.create(:status => statuses[i], :user_id => user.id)
@@ -83,10 +77,6 @@ User.all.each do |user|
                              selling_price: product.current_price,
                              percent_off: product.percent_off,
                              quantity: rand(1..4))
-
-    if rand(3) == 0
-      Rating.create(ratings.sample.merge(user_id: user.id, product_id: product.id))
-    end
   end
 end
 
