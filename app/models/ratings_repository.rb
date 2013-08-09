@@ -15,6 +15,10 @@ class RatingsRepository
     connection.post("http://localhost:9292/#{path}", params).body
   end
 
+  def self.put(path, params)
+    connection.put("http://localhost:9292/#{path}", params).body
+  end
+
   def self.get_json(path)
     JSON.parse(get(path))
   end
@@ -45,6 +49,11 @@ class RatingsRepository
 
   def self.create(attrs)
     params = {"rating" => attrs}.to_json
-    post "/products/#{attrs[:product_id]}/ratings", params
+    post "products/#{attrs[:product_id]}/ratings", params
+  end
+
+  def self.update(attrs)
+    params = {"rating" => attrs}.to_json
+    put "products/#{attrs['product_id']}/ratings/#{attrs['user_id']}", params
   end
 end

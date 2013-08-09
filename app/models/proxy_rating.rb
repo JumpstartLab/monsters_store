@@ -29,6 +29,12 @@ class ProxyRating
     end
   end
 
+  def update_attributes(attributes)
+    indifferent_attrs = HashWithIndifferentAccess.new(self.attributes)
+    full_attributes = indifferent_attrs.merge(attributes)
+    RatingsRepository.update(full_attributes)
+  end
+
   def save
     RatingsRepository.create(self.attributes)
   end

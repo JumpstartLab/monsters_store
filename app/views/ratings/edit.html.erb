@@ -1,7 +1,7 @@
 <div class="rating-edit">
   <h1><%= t('ratings.editpage') %> '<%= @product.title %>'</h1>
 
-  <%= simple_form_for [@product, @rating], :url => edit_product_rating_path(@rating.product_id, @rating.user_id), :method => :put do |f| %>
+  <%= simple_form_for :rating, :url => edit_product_rating_path(@rating.product_id, @rating.user_id), :method => :put do |f| %>
     <%= render 'form', :f => f %>
   <% end %>
 </div>
